@@ -94,63 +94,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  	int counter = 5;
-	int state = RED1_GREEN2;
-	setTimer(300);
-	setTimer1(100);
-	HAL_GPIO_WritePin(RED1_LED_GPIO_Port, RED1_LED_Pin, 1);
-	HAL_GPIO_WritePin(YELLOW1_LED_GPIO_Port, YELLOW1_LED_Pin, 0);
-	HAL_GPIO_WritePin(GREEN1_LED_GPIO_Port, GREEN1_LED_Pin, 0);
-	HAL_GPIO_WritePin(RED2_LED_GPIO_Port, RED2_LED_Pin, 0);
-	HAL_GPIO_WritePin(YELLOW2_LED_GPIO_Port, YELLOW2_LED_Pin, 0);
-	HAL_GPIO_WritePin(GREEN2_LED_GPIO_Port, GREEN2_LED_Pin, 1);
-
+  timer_flag = 1;
+	int counter = 0;
 	while (1)
 	{
 		if (timer_flag == 1){
-		  switch (state){
-		  case RED1_GREEN2:
-			  state = RED1_YELLOW2;
-			  setTimer(200);
-			  HAL_GPIO_WritePin(RED1_LED_GPIO_Port, RED1_LED_Pin, 1);
-			  HAL_GPIO_WritePin(YELLOW2_LED_GPIO_Port, YELLOW2_LED_Pin, 1);
-			  HAL_GPIO_WritePin(GREEN2_LED_GPIO_Port, GREEN2_LED_Pin, 0);
-			  break;
-		  case RED1_YELLOW2:
-			  state = GREEN1_RED2;
-			  counter = 3;
-			  setTimer(300);
-			  HAL_GPIO_WritePin(RED1_LED_GPIO_Port, RED1_LED_Pin, 0);
-			  HAL_GPIO_WritePin(YELLOW2_LED_GPIO_Port, YELLOW2_LED_Pin, 0);
-			  HAL_GPIO_WritePin(GREEN1_LED_GPIO_Port, GREEN1_LED_Pin, 1);
-			  HAL_GPIO_WritePin(RED2_LED_GPIO_Port, RED2_LED_Pin, 1);
-			  break;
-		  case GREEN1_RED2:
-			  state = YELLOW1_RED2;
-			  counter = 2;
-			  setTimer(200);
-			  HAL_GPIO_WritePin(RED2_LED_GPIO_Port, RED2_LED_Pin, 1);
-			  HAL_GPIO_WritePin(YELLOW1_LED_GPIO_Port, YELLOW1_LED_Pin, 1);
-			  HAL_GPIO_WritePin(GREEN1_LED_GPIO_Port, GREEN1_LED_Pin, 0);
-			  break;
-		  case YELLOW1_RED2:
-			  state = RED1_GREEN2;
-			  counter = 5;
-			  setTimer(300);
-			  HAL_GPIO_WritePin(RED2_LED_GPIO_Port, RED2_LED_Pin, 0);
-			  HAL_GPIO_WritePin(YELLOW1_LED_GPIO_Port, YELLOW1_LED_Pin, 0);
-			  HAL_GPIO_WritePin(GREEN2_LED_GPIO_Port, GREEN2_LED_Pin,1);
-			  HAL_GPIO_WritePin(RED1_LED_GPIO_Port, RED1_LED_Pin, 1);
-			  break;
-		  default:
-			  break;
+			setTimer(100);
+		  display7SEG(counter ++);
+		  if (counter >= 10){
+			  counter = 0;
 		  }
 		}
-		if (timer_flag1 == 1){
-			setTimer1(100);
-			display7SEG(counter);
-			counter --;
-		}
+
 	  timerRun();
 	  HAL_Delay(10);
 
