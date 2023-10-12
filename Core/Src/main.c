@@ -96,26 +96,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-  // EX6:
-//  int count = 0;
-//  setTimer(100);
-//  timer_flag = 1;
-//  while (1)
-//  {
-//	  if (count >= 12){
-//		  count = 0;
-//	  }
-//	  if (timer_flag == 1){
-//		  displayLED(count);
-//		  count++;
-//		  setTimer(100);
-//	  }
-//	  timerRun();
-//	  HAL_Delay(10);
-
-
-  //EX10:
   int hour = 12;
   int minute = 59;
   int second = 58;
